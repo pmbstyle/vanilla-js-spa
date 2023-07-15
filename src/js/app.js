@@ -27,10 +27,10 @@ async function fetchData() {
     return data
 }
 
-// Path: '/'
-// List page
+// Path: '/': Product list page
 async function initList() {
-    if(!products.length) {
+    let selectAll = document.querySelector('#selectAll')
+    if(!products.length && !selectAll.checked) {
         let items = await fetchData()
         products = items.products
     }
@@ -42,7 +42,7 @@ async function initList() {
             <tr>
                 <td>
                     <label>
-                        <input type="checkbox" class="checkbox" id="'product-'+${product.id}" name="'product-'+${product.id}"/>
+                        <input type="checkbox" class="checkbox" id="product-${product.id}" name="product-${product.id}"/>
                     </label>
                 </td>
                 <td>
@@ -70,12 +70,12 @@ async function initList() {
     })
     let tableBody = document.querySelector('#list table tbody')
     tableBody.innerHTML = tableContent
+    selectAllInit()
 }
 
-// sort products by title, description, price two way
+// sort products by title, description, price
 function sortProducts(sortBy,event) {
     let sortType = event.target.dataset.sortType
-    console.log(sortType)
     let sortedProducts = []
     switch (sortBy) {
         case 'title':
@@ -114,7 +114,7 @@ function sortProducts(sortBy,event) {
         default:
             sortedProducts = products
     }
-    
+
     if (sortType === 'desc') {
         sortedProducts = sortedProducts.reverse()
         event.target.dataset.sortType = 'asc'
@@ -126,15 +126,41 @@ function sortProducts(sortBy,event) {
     initList()
 }
 
-// Path: './create'
-// Create page
+// select all checkbox
+function selectAllInit() {
+    let selectAll = document.querySelector('#selectAll')
+    let checkboxes = document.querySelectorAll('#list table tbody .checkbox')
+    selectAll.addEventListener('change', (event) => {
+        checkboxes.forEach(checkbox => {
+            checkbox.checked = event.target.checked
+        })
+    })
+}
+
+function showDeleteDialog() {
+    deleteModal.showModal()
+}
+
+function deleteSelectedProducts() {
+    let checkboxes = document.querySelectorAll('#list table tbody .checkbox')
+    checkboxes.forEach(checkbox => {
+        if (checkbox.checked) {
+            let id = checkbox.id.split('-')[1]
+            let index = products.findIndex(product => product.id == id)
+            products.splice(index, 1)
+        }
+    })
+    initList()
+    deleteModal.close()
+}
+
+// Path: './create': Create product page
 function initCreate() {
     console.log('create page')
     console.log(products)
 }
 
-// Path: './edit'
-// Edit page
+// Path: './edit': Edit product page
 function initEdit() {
     console.log('edit page')
 
