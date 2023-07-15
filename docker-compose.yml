@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  httpserver:
+    image: nginx:1.15.12-alpine
+    container_name: html-server
+    restart: unless-stopped
+    ports:
+      - "80:80"
+    volumes:
+      - ./src:/src
+      - ./nginx-conf:/etc/nginx/conf.d
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
