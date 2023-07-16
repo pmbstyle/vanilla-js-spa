@@ -34,7 +34,7 @@ async function initList(orig = false) {
 				</td>
 				<td>$${product.price}</td>
 				<td>
-					<button onClick="onRouteChange('/edit/${product.id}')" class="btn btn-active btn-primary">
+					<button onClick="onRouteChange('/edit?id=${product.id}')" class="btn btn-active btn-primary">
 						<i class="fa-solid fa-pen"></i>
 						Edit
 					</button>

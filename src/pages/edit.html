@@ -1,1 +1,58 @@
-<div id="edit">edit</div>
+<div id="create">
+	<div class="grid grid-cols-2 gap-4">
+		<div>
+			<div class="form-control w-full mb-4">
+				<label class="label">
+				  	<span class="label-text">Title <span class="text-red-700">*</span></span>
+				</label>
+				<input type="text" placeholder="" class="input input-bordered w-full" id="form_title"/>
+				<label class="label">
+					<span class="label-text-alt text-red-700 min-h-[16px]" id="form_error_title">&nbsp;</span>
+				</label>
+			</div>
+			<div class="form-control w-full mb-4">
+				<label class="label">
+				  	<span class="label-text">Price <span class="text-red-700">*</span></span>
+				</label>
+				<input type="number" placeholder="0" class="input input-bordered w-full" id="form_price"/>
+				<label class="label">
+					<span class="label-text-alt text-red-700 min-h-[16px]" id="form_error_price"></span>
+				</label>
+			</div>
+		</div>
+		<div>
+			<div class="form-control w-full mb-4">
+				<label class="label">
+				  	<span class="label-text">Brand <span class="text-red-700">*</span></span>
+				</label>
+				<input type="text" placeholder="" class="input input-bordered w-full" id="form_brand"/>
+				<label class="label">
+					<span class="label-text-alt text-red-700 min-h-[16px]" id="form_error_brand"></span>
+				</label>
+			</div>
+			<div class="form-control w-full">
+				<label class="label">
+				  <span class="label-text">Image</span>
+				  <span class="label-text-alt">jpg/png, max size 1mb</span>
+				</label>
+				<input type="file" class="file-input file-input-bordered w-full" id="form_thumbnail" accept="image/png, image/jpeg"/>
+				<label class="label">
+					<span class="label-text-alt text-red-700 min-h-[16px]" id="form_error_thumbnail"></span>
+				</label>
+			  </div>
+		</div>
+	</div>
+	<div class="form-control w-full mb-4">
+		<label class="label">
+			  <span class="label-text">Description <span class="text-red-700">*</span></span>
+		</label>
+		<textarea class="textarea textarea-bordered h-24" id="form_description"></textarea>
+		<label class="label">
+			<span class="label-text-alt text-red-700 min-h-[16px]" id="form_error_description"></span>
+		</label>
+	</div>
+	<div class="w-full flex justify-between pt-4">
+		<button class="btn btn-secondary" id="form_edit">Update product</button>
+		<button class="btn btn-outline btn-error" onClick="onRouteChange('/')">Cancel</button>
+	</div>
+</div>

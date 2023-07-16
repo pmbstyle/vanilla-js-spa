@@ -4,14 +4,14 @@ var allProducts = []
 var products = []
 var erased = false
 
-function pageInit(page) {
+function pageInit(page, id = null) {
 	switch (page) {
 		case 'list':
 			return initList()
 		case 'create':
 			return initCreate()
 		case 'edit':
-			return initEdit()
+			return initEdit(id)
 		default:
 			return false
 	}
