@@ -2,6 +2,10 @@
 
 Example of implementation simple CRUD SPA using vanilla javascript and dummy API source.
 
+LIVE: http://vjs-spa.trofimov.ca/
+
+[![preview](http://vjs-spa.trofimov.ca/img/vjs-spa.png "preview")](http://vjs-spa.trofimov.ca/img/vjs-spa.png "preview")
+
 ## Running a project locally
 clone the repo:  `git clone https://github.com/pmbstyle/vanilla-js-spa.git`
 
