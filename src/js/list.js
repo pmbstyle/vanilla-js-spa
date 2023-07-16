@@ -172,8 +172,9 @@ function showDeleteDialog() {
 }
 
 function deleteSelectedProducts() {
-	let checkboxes = document.querySelectorAll('#list table tbody .checkbox')
-	
+	//get only checked checkboxes
+	let checkboxes = document.querySelectorAll('#list table tbody .checkbox:checked')
+
 	if(checkboxes.length == 0) return
 	if(checkboxes.length == allProducts.length) {
 		products = []
@@ -197,6 +198,7 @@ function deleteSelectedProducts() {
 			})
 		}
 	})
+
 	indexes.forEach(index => {
 		products.splice(index,1)
 	})
