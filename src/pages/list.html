@@ -1,3 +1,15 @@
+<div class="filters mb-4 flex justify-between items-center">
+	<div>
+		<button class="btn btn-secondary" onClick="onRouteChange('/create')">
+			<i class="fa-regular fa-plus"></i> Add product
+		</button>
+	</div>
+	<div class="flex flex-1 justify-end items-center">
+		<span>Filter by:</span>
+		<select class="select select-secondary w-full max-w-xs mx-2" id="filterBrands"></select>
+		<select class="select select-secondary w-full max-w-xs mx-2" id="filterPrice"></select>
+	</div>
+</div>
 <div id="list" class="rounded overflow-hidden bg-neutral text-neutral-content">
 	<div class="overflow-x-auto">
 		<table class="table table-zebra">
@@ -42,7 +54,10 @@
 </div>
 
 <div class="flex justify-start mt-4">
-	<button class="btn btn-outline btn-secondary" onClick="showDeleteDialog()">Delete selected</button>
+	<button class="btn btn-outline btn-secondary" onClick="showDeleteDialog()">
+		<i class="fa-solid fa-trash"></i>
+		Delete selected
+	</button>
 </div>
 
 <dialog id="deleteModal" class="modal">
