@@ -2,6 +2,7 @@
 const app = document.getElementById('app')
 var allProducts = []
 var products = []
+var erased = false
 
 function pageInit(page) {
 	switch (page) {
@@ -18,6 +19,7 @@ function pageInit(page) {
 
 
 async function fetchData() {
+	erased = false
 	let data = await fetch('https://dummyjson.com/products?limit=10')
 		.then(res => {
 			return res.json()

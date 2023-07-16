@@ -173,13 +173,35 @@ function showDeleteDialog() {
 
 function deleteSelectedProducts() {
 	let checkboxes = document.querySelectorAll('#list table tbody .checkbox')
+	
+	if(checkboxes.length == 0) return
+	if(checkboxes.length == allProducts.length) {
+		products = []
+		allProducts = []
+		initList(true)
+		deleteModal.close()
+		erased = true
+		return
+	}
+
+	let indexes = []
+	let allIndexes = []
 	checkboxes.forEach(checkbox => {
 		if (checkbox.checked) {
 			let id = checkbox.id.split('-')[1]
-			let index = products.findIndex(product => product.id == id)
-			allProducts.splice(index, 1)
-			products.splice(index, 1)
+			products.forEach((p,i) => {
+				if(p.id == id) indexes.push(i)
+			})
+			allProducts.forEach((p,i) => {
+				if(p.id == id) allIndexes.push(i)
+			})
 		}
+	})
+	indexes.forEach(index => {
+		products.splice(index,1)
+	})
+	allIndexes.forEach(index => {
+		allProducts.splice(index,1)
 	})
 	initList(true)
 	deleteModal.close()
