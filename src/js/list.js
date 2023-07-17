@@ -193,29 +193,21 @@ function deleteSelectedProducts() {
 		initList(true)
 		deleteModal.close()
 		erased = true
+		document.querySelector('#selectAll').checked = false
+		showSuccess('All products deleted successfully')
 		return
 	}
 
-	let indexes = []
-	let allIndexes = []
 	checkboxes.forEach(checkbox => {
 		if (checkbox.checked) {
 			let id = checkbox.id.split('-')[1]
-			console.log('id',id)
-			products.forEach((p,i) => {
-				if(p.id == id) indexes.push(i)
-			})
-			allProducts.forEach((p,i) => {
-				if(p.id == id) allIndexes.push(i)
-			})
+			let filteredProducts = products.filter((p) => p.id != id)
+			let filteredProductsAll = allProducts.filter((p) => p.id != id)
+			products = filteredProducts
+			allProducts = filteredProductsAll
 		}
 	})
-	for (var i = indexes.length -1; i >= 0; i--) {
-		products.splice(indexes[i],1)
-	}
-	for (var i = allIndexes.length -1; i >= 0; i--) {
-		allProducts.splice(indexes[i],1)
-	}
+
 	initList(true)
 	deleteModal.close()
 	showSuccess('Products deleted successfully')
