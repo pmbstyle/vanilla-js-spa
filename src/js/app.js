@@ -29,18 +29,3 @@ async function fetchData() {
 		})
 	return data
 }
-
-
-
-// Path: './create': Create product page
-function initCreate() {
-	console.log('create page')
-	console.log(products)
-}
-
-// Path: './edit': Edit product page
-function initEdit() {
-	console.log('edit page')
-
-	console.log(products)
-}

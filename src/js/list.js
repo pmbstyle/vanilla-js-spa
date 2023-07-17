@@ -6,7 +6,7 @@ async function initList(orig = false) {
 		allProducts = items.products
 	}
 
-	//create table tbody content
+	//create table tbody content based on product entries
 	let tableContent = ''
 	products.forEach(product => {
 		tableContent += `
@@ -42,7 +42,18 @@ async function initList(orig = false) {
 			</tr>
 		`
 	})
+
 	let tableBody = document.querySelector('#list table tbody')
+	//if no products, show message
+	if(tableContent.length == 0) {
+		tableContent = `
+			<tr>
+				<td colspan="5" class="text-center">
+					No products found
+				</td>
+			</tr>
+		`
+	}
 	tableBody.innerHTML = tableContent
 
 	//if initial load, init filters
@@ -87,8 +98,8 @@ function initFilters() {
 			priceRanges.push(500)
 		} else if (price < 1000) {
 			priceRanges.push(1000)
-		} else if (price < 2000) {
-			priceRanges.push(2000)
+		} else if (price < 1500) {
+			priceRanges.push(1500)
 		}
 	})
 	priceRanges = [...new Set(priceRanges)]
@@ -190,6 +201,7 @@ function deleteSelectedProducts() {
 	checkboxes.forEach(checkbox => {
 		if (checkbox.checked) {
 			let id = checkbox.id.split('-')[1]
+			console.log('id',id)
 			products.forEach((p,i) => {
 				if(p.id == id) indexes.push(i)
 			})
@@ -198,13 +210,13 @@ function deleteSelectedProducts() {
 			})
 		}
 	})
-
-	indexes.forEach(index => {
-		products.splice(index,1)
-	})
-	allIndexes.forEach(index => {
-		allProducts.splice(index,1)
-	})
+	for (var i = indexes.length -1; i >= 0; i--) {
+		products.splice(indexes[i],1)
+	}
+	for (var i = allIndexes.length -1; i >= 0; i--) {
+		allProducts.splice(indexes[i],1)
+	}
 	initList(true)
 	deleteModal.close()
+	showSuccess('Products deleted successfully')
 }

@@ -1,3 +1,4 @@
+// Path: '/edit?id={id}': Product edit page
 async function initEdit(id) {
     if(allProducts.length == 0 && !erased) {
         let items = await fetchData()
@@ -13,33 +14,8 @@ async function initEdit(id) {
     newProduct = product
 
     var submitButton = document.querySelector('#form_edit')
-    var fileInput = document.querySelector('#form_thumbnail')
-
-    // product image input handler
-    fileInput.addEventListener('change', function (event) {
-        let file = event.target.files[0]
-        let valid = true
-        if (file.type != 'image/jpeg' && file.type != 'image/png') {
-            validationErrors.thumbnail = 'File must be an image'
-            valid = false
-            event.target.files = null
-        }
-        if (file.size > 1000000) {
-            validationErrors.thumbnail = 'File must be less than 1MB'
-            valid = false
-            event.target.files = null
-        }
-        if (valid) {
-            let reader = new FileReader()
-            reader.onload = function (e) {
-                newProduct.thumbnail = e.target.result
-            }
-            reader.readAsDataURL(file)
-        } else {
-            showErrors()
-        }
-
-    })
+    
+    fileInputInit()
 
     //form submit handler
     submitButton.addEventListener('click', async function () {
@@ -67,4 +43,5 @@ async function editProduct() {
     allProducts[index] = newProduct
     products = allProducts
     onRouteChange('/')
+    showSuccess('Product updated successfully')
 }
